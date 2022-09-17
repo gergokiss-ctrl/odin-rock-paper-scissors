@@ -1,15 +1,3 @@
-/*
-- input ablak felugrik
-- felhasználó beírja a 3 opció közül valamelyiket
-- a prompt addig aktív, amíg a 3 opció közül nem lett beírva az egyik helyesen (kis- és nagybetűkre nem érzékeny)
-- a gép generál egy választ
-- összehasonlítjuk a két választ, és eldöntjük, hogy ki nyert
-- a győztes pontszámát növeljük
-- ha döntetlen, akkor a kör megismétlődik, a pontszámok nem változnak
-- addig fut a játék, amíg 5 kör le nem ment
-- az 5. kör végén kiértékeljük a győztest a pontszámok alapján
-*/
-
 function getComputerChoice() {
     let computerSelection = Math.floor(Math.random() * 3 + 1);
     switch (computerSelection) {
@@ -40,33 +28,64 @@ function getPlayerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
+    let result;
     if (playerSelection == "Rock") {
         if (computerSelection == 2) {
             console.log("You Lose! Paper beats Rock");
+            result = -1;
         } else if (computerSelection == 3) {
             console.log("You Win! Rock beats Scissors");
+            result = 1;
         } else {
             console.log("Tie!");
         }
     } else if (playerSelection == "Paper") {
         if (computerSelection == 1) {
             console.log("You Win! Paper beats Rock");
+            result = 1;
         } else if (computerSelection == 3) {
             console.log("You Lose! Scissors beats Paper");
+            result = -1;
         } else {
             console.log("Tie!");
         }
     } else if (playerSelection == "Scissors") {
         if (computerSelection == 1) {
             console.log("You Lose! Rock beats Scissors");
+            result = -1;
         } else if (computerSelection == 2) {
             console.log("You Win! Scissors beats Paper");
+            result = 1;
         } else {
             console.log("Tie!");
         }
     }
+    console.log("\n");
+    return result;
 }
 
-const playerSelection = getPlayerChoice();
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    let result = 0;
+
+
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = getPlayerChoice();
+        let computerSelection = getComputerChoice();
+
+        result = playRound(playerSelection, computerSelection);
+        if (result == 1) {
+            playerScore++;
+        } else if (result == -1) {
+            computerScore++;
+        } else {
+            continue;
+        }
+    }
+
+    const resultText = `Results:\nPlayer ${playerScore} - ${computerScore} Computer`;
+    console.log(resultText);
+}
+
+game();
