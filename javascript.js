@@ -11,17 +11,34 @@
 */
 
 function getComputerChoice() {
-    switch (Math.floor(Math.random() * 3 + 1)) {
+    let computerSelection = Math.floor(Math.random() * 3 + 1);
+    switch (computerSelection) {
         case 1:
-            console.log('Rock');
+            console.log('Computer choice: Rock');
             break;
         case 2:
-            console.log('Paper');
+            console.log('Computer choice: Paper');
             break;
         case 3:
-            console.log('Scissors');
+            console.log('Computer choice: Scissors');
             break;
+    }
+
+    return computerSelection;
+}
+
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection == "rock") {
+        if (computerSelection == 2) {
+            console.log("You Lose! Paper beats Rock");
+        } else if (computerSelection == 3) {
+            console.log("You Win! Rock beats Scissors");
+        } else {
+            console.log("Tie!");
+        }
     }
 }
 
-getComputerChoice();
+const playerSelection = "rock";
+const computerSelection = getComputerChoice();
+console.log(playRound(playerSelection, computerSelection));
