@@ -68,7 +68,7 @@ function game() {
     let playerScore = 0;
     let computerScore = 0;
     let result = 0;
-
+    let resultText;
 
     for (let i = 0; i < 5; i++) {
         let playerSelection = getPlayerChoice();
@@ -84,7 +84,13 @@ function game() {
         }
     }
 
-    const resultText = `Results:\nPlayer ${playerScore} - ${computerScore} Computer`;
+    if (playerScore < computerScore) {
+        resultText = `Computer Wins!\nFinal score:\nPlayer ${playerScore} - ${computerScore} Computer`;
+    } else if (playerScore > computerScore) {
+        resultText = `Player Wins!\nFinal score:\nPlayer ${playerScore} - ${computerScore} Computer`;
+    } else {
+        resultText = `Tie!\nFinal score:\nPlayer ${playerScore} - ${computerScore} Computer`;
+    }
     console.log(resultText);
 }
 
