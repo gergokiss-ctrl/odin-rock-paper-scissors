@@ -17,11 +17,14 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
     let playerSelection;
+    let input;
 
-    let input = prompt("Please enter your choice");
-    let str1 = input.slice(0, 1);
-    let str2 = input.slice(1);
-    playerSelection = str1.toUpperCase() + str2.toLowerCase();
+    while (playerSelection != "Rock" && playerSelection != "Paper" && playerSelection != "Scissors") {
+        input = prompt("Please enter your choice");
+        let str1 = input.slice(0, 1);
+        let str2 = input.slice(1);
+        playerSelection = str1.toUpperCase() + str2.toLowerCase();
+    }
 
     console.log("Player choice: " + playerSelection);
     return playerSelection;
